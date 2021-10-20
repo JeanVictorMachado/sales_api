@@ -7,7 +7,7 @@ import UsersRepository from '../typeorm/repositories/UsersRepository';
 import uploadConfig from '@config/upload';
 
 interface IRequest {
-  avatarFilename: string;
+  avatarFilename?: string;
   user_id: string;
 }
 
@@ -29,7 +29,7 @@ class UpdateUserAvatarService {
       }
     }
 
-    user.avatar = avatarFilename;
+    user.avatar = String(avatarFilename);
 
     await usersRepository.save(user);
 
